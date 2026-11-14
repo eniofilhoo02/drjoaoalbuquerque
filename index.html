@@ -43,7 +43,6 @@ h2,h3{text-wrap:balance}
 .wrap{width:min(1240px,100%);margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-r)}
 section{position:relative;scroll-margin-top:0}
 .on-cream{background:var(--cream);color:var(--fg-d)}
-#consultorio{background:var(--cream-2)}
 .on-ink{background:var(--ink);color:var(--fg-l)}
 .band{padding-block:var(--pad)}
 .h2{font-weight:300;font-size:clamp(1.9rem,3.4vw,3.1rem);line-height:1.12;letter-spacing:-.015em}
@@ -151,9 +150,6 @@ section{position:relative;scroll-margin-top:0}
 .car-ctl button{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:none;border:1px solid rgba(221,176,98,.5);color:var(--gold-3);cursor:pointer;transition:background .3s,color .3s}
 .car-ctl button:hover{background:var(--gold);color:var(--ink)}
 .car-ctl svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-#car-pause .play{display:none}
-#car-pause[aria-pressed="true"] .play{display:block}
-#car-pause[aria-pressed="true"] .pau{display:none}
 
 /* resultados */
 .res{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);align-items:center}
@@ -190,19 +186,20 @@ section{position:relative;scroll-margin-top:0}
 .off-info dl div{padding-block:16px;border-bottom:1px dashed rgba(138,87,22,.45)}
 .off-info dt{font-size:.75rem;letter-spacing:.06em;font-weight:500;color:var(--gold-ink)}
 .off-info dd{margin:2px 0 0;min-height:1.5em;color:var(--fg-d)}
-.off-info .btn[aria-disabled="true"]{opacity:.45;pointer-events:none;background:var(--ink);color:var(--fg-l)}
 .off-map{grid-column:1/8;grid-row:2}
 .off-map .slot,.off-map iframe{width:100%;aspect-ratio:783/600;border:0;display:block}
 
-.off-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn.ghost-d{background:transparent;color:var(--fg-d);box-shadow:inset 0 0 0 1px rgba(30,26,33,.45)}
-.btn.ghost-d::before{background:var(--ink)}
-.btn.ghost-d:hover,.btn.ghost-d:focus-visible{color:var(--fg-l)}
 .mapcard{position:relative;display:block;overflow:hidden;aspect-ratio:783/600;background:var(--ink-2);text-decoration:none;color:var(--fg-l);border-radius:2px;box-shadow:0 0 0 1px var(--line-d)}
 .mapcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 @media (hover:hover){.mapcard:hover img{transform:scale(1.04)}}
-.mc-src{position:absolute;left:12px;top:10px;padding:3px 8px;background:rgba(251,245,228,.85);color:var(--muted-d);font-size:.6875rem;border-radius:2px}
-.mc-cta{position:absolute;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,28px);padding:14px 20px;background:var(--gold);color:var(--ink);font-weight:500;font-size:.8125rem;letter-spacing:.03em;border-radius:2px}
+.mc-src{position:absolute;left:12px;top:10px;padding:3px 8px;background:rgba(251,245,228,.85);color:var(--muted-d);font-size:.6875rem;border-radius:2px}.map-below{margin-top:16px}
+.dep-head{margin-bottom:clamp(36px,4.5vw,64px)}
+.dep-head .h2{max-width:16ch}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.4vw,56px)}
+.dep-grid blockquote{margin:0;padding-top:clamp(22px,2.6vw,34px);border-top:1px solid var(--gold);display:flex;flex-direction:column}
+.dep-grid blockquote::before{content:"\201C";order:-1;font-size:3.4rem;line-height:.7;height:1.6rem;font-weight:200;color:var(--gold)}
+.dep-grid blockquote p{font-size:1.0625rem;font-weight:300;line-height:1.75;color:var(--fg-l)}
+.dep-grid footer{margin-top:auto;padding-top:24px;font-size:.875rem;font-weight:500;letter-spacing:.03em;color:var(--gold-2)}
 .q .a p:not(:last-child){padding-bottom:12px}
 .q .a .a-link{padding-bottom:28px}
 /* faq */
@@ -258,10 +255,13 @@ section{position:relative;scroll-margin-top:0}
   .burger{display:block}
   .nav .btn{display:none}
   .hdr .wrap{height:68px}
-  .tx-head .h2,  .tx-head p{grid-column:1/10;margin-top:16px}
+  .tx-head .h2,.off-head .h2{grid-column:1/13}
+  .tx-head p{grid-column:1/10;margin-top:16px}
+  .dep-grid{grid-template-columns:1fr;max-width:640px}
   .about-fig{grid-column:1/7}.about-txt{grid-column:8/13}
   .res-txt{grid-column:1/13;margin-bottom:36px}.res-fig{grid-column:1/13}
-    .faq-side{grid-column:1/13;position:static;margin-bottom:36px}.faq-list{grid-column:1/13}
+  .off-info,.off-map{grid-column:1/13;grid-row:auto}.off-map{order:2}.off-info{order:3}
+  .faq-side{grid-column:1/13;position:static;margin-bottom:36px}.faq-list{grid-column:1/13}
   .ftr .lg{grid-column:1/13}.ftr .c,.ftr .c.w{grid-column:span 4}
 }
 /* mobile: composição própria */
@@ -283,11 +283,10 @@ section{position:relative;scroll-margin-top:0}
   .about-fig{margin-right:22px}
   .facts{grid-template-columns:1fr}
   .tx-head p{grid-column:1/13}
-    .off-map .slot,.off-map iframe{aspect-ratio:4/3}
-    .mc-cta{left:16px;right:16px;text-align:center}
-  .off-btns .btn{width:100%}
+  .off-map .slot,.off-map iframe{aspect-ratio:4/3}
   .cmp{max-height:none}
   .faq-side .btn{width:100%}
+  .map-below .btn{width:100%}
   .res-txt .tabs{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(var(--gut) * -1) calc(var(--gut-r) * -1);padding-inline:var(--gut) var(--gut-r);scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .res-txt .tabs::-webkit-scrollbar{display:none}
   .tabs button{flex:none;white-space:nowrap}
@@ -311,7 +310,6 @@ section{position:relative;scroll-margin-top:0}
 .thread{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
 .thread path{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
 @media (max-width:1199px){.thread{display:none}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -393,7 +391,6 @@ section{position:relative;scroll-margin-top:0}
         <a class="btn ghost" href="https://api.whatsapp.com/send/?phone=5585996811139" target="_blank" rel="noopener">Tirar dúvidas pelo WhatsApp</a>
         <div class="car-ctl">
           <button id="car-prev" aria-label="Procedimento anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <button id="car-pause" aria-pressed="false" aria-label="Pausar o movimento"><svg class="pau" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg></button>
           <button id="car-next" aria-label="Próximo procedimento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
@@ -421,6 +418,26 @@ section{position:relative;scroll-margin-top:0}
       </div>
     </div>
   </section>
+  <section class="on-ink band" id="depoimentos" data-thread aria-labelledby="dep-t">
+    <div class="wrap">
+      <div class="dep-head"><h2 class="h2" id="dep-t">Quem já passou por aqui conta como foi.</h2></div>
+      <div class="dep-grid">
+        <blockquote>
+          <p>Atendimento excelente, atenção 100%, sempre a disposição do paciente, sempre preocupado com a saúde dentária e procurando evolução</p>
+          <footer>Lauro Santos</footer>
+        </blockquote>
+        <blockquote>
+          <p>Incrível, doutor! Muito notória a diferença nos meus dentes. Ficaram mais brancos, com um aspecto de limpeza muito maior. Muito obrigado mesmo!</p>
+          <footer>Dario Fialho</footer>
+        </blockquote>
+        <blockquote>
+          <p>Espaço excelente e com uma estrutura de alto nível. O atendimento é personalizado, permitindo escolher o que assistir e ouvir, além de conversar com o doutor. O local é extremamente limpo. A consulta passa rapidamente e a sensação pós-atendimento é diferenciada. Serviço de altíssima qualidade</p>
+          <footer>Zilfran Filho</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <section class="on-cream band" id="consultorio" data-thread aria-labelledby="off-t">
     <div class="wrap off">
       <div class="off-head"><h2 class="h2" id="off-t">O consultório</h2></div>
@@ -429,7 +446,6 @@ section{position:relative;scroll-margin-top:0}
           <div><dt>Endereço</dt><dd data-fill="endereco"></dd></div>
           <div><dt>Atendimento</dt><dd data-fill="horario"></dd></div>
         </dl>
-        <div class="off-btns"><a class="btn" id="route-btn" href="#" target="_blank" rel="noopener">Traçar rota</a><a class="btn ghost-d" id="maps-btn" href="#" target="_blank" rel="noopener">Abrir no Google Maps</a></div>
       </div>
       <div class="off-map" id="off-map"></div>
     </div>
@@ -493,11 +509,11 @@ const WHATSAPP = 'https://api.whatsapp.com/send/?phone=5585996811139';
 const PROFILE = { cro: 'CRO-CE 18497', formacao: 'Pós-graduando em Implantodontia, Universidade de Fortaleza' };                 // ex.: 'CRO-CE 0000'
 const CLINIC  = { endereco: 'Av. Santos Dumont, 2456 - Aldeota, sala nº 1503', horario: 'Das 5:00 às 11:00', mapsQuery: 'Av. Santos Dumont, 2456, Aldeota, Fortaleza - CE', embed: false, foto: '' }; // mapsQuery: endereço completo para o mapa
 const CASES = [                                             // antes/depois: use apenas imagens reais, com autorização
+  { titulo: 'Clareamento dental', antes: 'img/pre-clareamento-zoom.jpg', depois: 'img/pos-clareamento.jpg', ratio: '3/4', nota: '' },
+  { titulo: 'Restauração de Classe IV', antes: 'img/pre-classe4.jpg', depois: 'img/pos-classe4.jpg', ratio: '1/1', nota: '' },
   { titulo: 'Restauração de Classe II', antes: 'img/pre-classe2.jpg', depois: 'img/pos-classe2.jpg', ratio: '3/4', nota: '' },
   { titulo: 'Restauração de Classe III', antes: 'img/pre-classe3.jpg', depois: 'img/pos-classe3.jpg', ratio: '3/4', nota: '' },
-  { titulo: 'Restauração de Classe IV', antes: 'img/pre-classe4.jpg', depois: 'img/pos-classe4.jpg', ratio: '1/1', nota: '' },
-  { titulo: 'Recobrimento articular', antes: 'img/pre-articular.jpg', depois: 'img/pos-articular.jpg', ratio: '3/2', nota: '' },
-  { titulo: 'Clareamento dental', antes: 'img/pre-clareamento-zoom.jpg', depois: 'img/pos-clareamento.jpg', ratio: '3/4', nota: '' }
+  { titulo: 'Recobrimento radicular', antes: 'img/pre-articular.jpg', depois: 'img/pos-articular.jpg', ratio: '3/2', nota: '' }
 ];
 const TREATMENTS = [
   { nome: 'Estética e Dentística', img: '',
@@ -570,7 +586,7 @@ track.innerHTML = items.map(cardHTML).join('') + items.map(cardHTML).join('');
 $$('.card', track).slice(items.length).forEach(c => c.setAttribute('aria-hidden', 'true'));
 
 const S = { pos: 0 };
-let setW = 0, hovering = false, dragging2 = false, inView = true, auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let setW = 0, hovering = false, dragging2 = false, inView = true, auto = true, hold = 0;
 function renderCar() { if (!setW) return; const x = ((S.pos % setW) + setW) % setW; track.style.transform = `translate3d(${-x}px,0,0)`; }
 function measureCar() { const c = $$('.card', track); setW = c[items.length].offsetLeft - c[0].offsetLeft; renderCar(); }
 const stepW = () => { const c = $$('.card', track); return c[1].offsetLeft - c[0].offsetLeft; };
@@ -586,7 +602,7 @@ let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(mea
 let last = performance.now();
 (function loop(t) {
   const dt = Math.min(64, t - last); last = t;
-  if (auto && !hovering && !dragging2 && inView && !document.hidden) { S.pos += 36 * dt / 1000; renderCar(); }
+  if (auto && !hovering && !dragging2 && performance.now() > hold && inView && !document.hidden) { S.pos += 36 * dt / 1000; renderCar(); }
   requestAnimationFrame(loop);
 })(last);
 if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; }).observe(car);
@@ -598,14 +614,10 @@ car.addEventListener('focusout', () => { hovering = false; });
 let sx = 0, sp = 0;
 car.addEventListener('pointerdown', e => { dragging2 = true; sx = e.clientX; sp = S.pos; if (window.gsap) gsap.killTweensOf(S); car.setPointerCapture(e.pointerId); });
 car.addEventListener('pointermove', e => { if (!dragging2) return; S.pos = sp - (e.clientX - sx); renderCar(); });
-['pointerup', 'pointercancel'].forEach(t => car.addEventListener(t, () => { dragging2 = false; }));
+['pointerup', 'pointercancel'].forEach(t => car.addEventListener(t, e => { dragging2 = false; if (e.pointerType !== 'mouse') hold = performance.now() + 1600; }));
 car.addEventListener('keydown', e => { if (e.key === 'ArrowRight') glide(S.pos + stepW()); else if (e.key === 'ArrowLeft') glide(S.pos - stepW()); });
 $('#car-prev').addEventListener('click', () => glide(S.pos - stepW()));
 $('#car-next').addEventListener('click', () => glide(S.pos + stepW()));
-const pauseBtn = $('#car-pause');
-function syncPause() { pauseBtn.setAttribute('aria-pressed', String(!auto)); pauseBtn.setAttribute('aria-label', auto ? 'Pausar o movimento' : 'Retomar o movimento'); }
-pauseBtn.addEventListener('click', () => { auto = !auto; syncPause(); });
-syncPause();
 
 /* comparador */
 const cmp = $('#cmp'), range = $('#cmp-range'), beforeL = $('#cmp-before'), bar = $('#cmp-bar'), knob = $('#cmp-knob');
@@ -638,17 +650,15 @@ cmp.addEventListener('pointermove', e => { if (dragging) fromX(e.clientX); });
 
 /* consultório */
 const mq = encodeURIComponent(CLINIC.mapsQuery || CLINIC.endereco || '');
-const placeURL = `https://www.google.com/maps/search/?api=1&query=${mq}`;
 const routeURL = `https://www.google.com/maps/dir/?api=1&destination=${mq}`;
 if (mq) {
-  $('#maps-btn').href = placeURL; $('#route-btn').href = routeURL;
-  $('#off-map').innerHTML = CLINIC.embed
+  const card = CLINIC.embed
     ? `<iframe title="Mapa do consultório" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mq}&output=embed"></iframe>`
     : `<a class="mapcard" href="${routeURL}" target="_blank" rel="noopener" aria-label="Abrir a rota até o consultório no Google Maps">
         <img src="img/mapa.jpg" alt="Mapa com a localização do consultório, no Corporate Plaza Business Center, Av. Santos Dumont, Aldeota" width="783" height="600" loading="lazy">
-        <span class="mc-cta">Abrir rota no Google Maps</span>
         <span class="mc-src">Mapa: Google Maps</span>
       </a>`;
+  $('#off-map').innerHTML = card + `<div class="map-below"><a class="btn" href="${routeURL}" target="_blank" rel="noopener">Abrir rota no Google Maps</a></div>`;
 } else {
   $('#off-map').innerHTML = '<div class="slot">Mapa de localização a inserir</div>';
 }
@@ -724,8 +734,38 @@ if ('IntersectionObserver' in window) {
     });
   }
 
-  const mm = gsap.matchMedia();
-  mm.add('(prefers-reduced-motion: no-preference)', () => {
+  /* letras que surgem ao rolar: rodam em qualquer aparelho */
+  const lettersReveal = () => {
+    /* textos aparecem conforme a rolagem: títulos palavra a palavra, blocos subindo suavemente */
+    const splitChars = el => {
+      el.dataset.full = el.textContent;
+      const walk = n => [...n.childNodes].forEach(c => {
+        if (c.nodeType === 3) {
+          const f = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { f.appendChild(document.createTextNode(' ')); return; }
+            const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+            [...part].forEach(ch => { const i = document.createElement('span'); i.className = 'c'; i.textContent = ch; w.appendChild(i); });
+            f.appendChild(w);
+          });
+          c.replaceWith(f);
+        } else if (c.nodeType === 1) walk(c);
+      });
+      walk(el);
+      const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = el.dataset.full; el.prepend(sr);
+      return $$('.c', el);
+    };
+    /* títulos e texto do Sobre: as letras surgem conforme você rola a página */
+    $$('.h2, .about-txt p, .res-txt p, .dep-grid blockquote p').forEach(el => {
+      const chars = splitChars(el), isH = el.classList.contains('h2');
+      gsap.fromTo(chars, { opacity: .12 }, { opacity: 1, ease: 'none', stagger: isH ? .06 : .02,
+        scrollTrigger: { trigger: el, start: 'top 88%', end: () => '+=' + Math.round(Math.max(innerHeight * .34, el.offsetHeight * .85)), scrub: .5, invalidateOnRefresh: true } });
+    });
+  };
+  lettersReveal();
+
+  (() => {
     /* o momento orquestrado: a abertura */
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.from('.hero-photo img', { scale: 1.12, duration: 2, ease: 'power2.out' }, 0)
@@ -749,32 +789,6 @@ if ('IntersectionObserver' in window) {
         .to(o, { v: 50, duration: .7, ease: 'power2.out', onUpdate: () => setCmp(o.v) });
     } });
 
-    /* textos aparecem conforme a rolagem: títulos palavra a palavra, blocos subindo suavemente */
-    const splitChars = el => {
-      el.dataset.full = el.textContent;
-      const walk = n => [...n.childNodes].forEach(c => {
-        if (c.nodeType === 3) {
-          const f = document.createDocumentFragment();
-          c.textContent.split(/(\s+)/).forEach(part => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { f.appendChild(document.createTextNode(' ')); return; }
-            const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
-            [...part].forEach(ch => { const i = document.createElement('span'); i.className = 'c'; i.textContent = ch; w.appendChild(i); });
-            f.appendChild(w);
-          });
-          c.replaceWith(f);
-        } else if (c.nodeType === 1) walk(c);
-      });
-      walk(el);
-      const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = el.dataset.full; el.prepend(sr);
-      return $$('.c', el);
-    };
-    /* títulos e texto do Sobre: as letras surgem conforme você rola a página */
-    $$('.h2, .about-txt p, .res-txt p').forEach(el => {
-      const chars = splitChars(el), isH = el.classList.contains('h2');
-      gsap.fromTo(chars, { opacity: .12 }, { opacity: 1, ease: 'none', stagger: isH ? .06 : .02,
-        scrollTrigger: { trigger: el, start: 'top 88%', end: () => '+=' + Math.round(Math.max(innerHeight * .34, el.offsetHeight * .85)), scrub: .5, invalidateOnRefresh: true } });
-    });
     /* fotos e mapa: revelação por recorte ao entrar na tela */
     ['.about-fig .ph', '.res-fig .cmp', '.mapcard'].forEach(sel => {
       $$(sel).forEach(el => gsap.fromTo(el, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'power3.inOut',
@@ -782,20 +796,18 @@ if ('IntersectionObserver' in window) {
     });
     $$('.about-fig img, .mapcard img').forEach(img => gsap.from(img, { scale: 1.18, duration: 1.6, ease: 'power3.out',
       scrollTrigger: { trigger: img, start: 'top 88%', once: true } }));
-    ['.about-txt .facts', '.about-txt .about-cta', '.tx-head p', '.car', '.tx-foot',
+    ['.dep-grid footer', '.map-below', '.about-txt .facts', '.about-txt .about-cta', '.tx-head p', '.car', '.tx-foot',
      '.res-cap', '.off-info > *', '.faq-side p', '.faq-side .btn', '.q',
      '.final p', '.final .btn', '.ftr .lg', '.ftr .c'].forEach(sel => {
       $$(sel).forEach(el => gsap.from(el, { opacity: 0, y: 28, duration: .9, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 92%', once: true } }));
     });
-  });
-  mm.add('(prefers-reduced-motion: reduce)', () => { $('#thread-line').style.strokeDashoffset = 0; });
+  })();
 
   const rebuild = () => { buildThread(); ScrollTrigger.refresh(); };
   window.addEventListener('load', rebuild);
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(rebuild, 250); });
   buildThread();
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches && line.getAttribute('d')) line.style.strokeDashoffset = 0;
 })();
 </script>
 </body>
