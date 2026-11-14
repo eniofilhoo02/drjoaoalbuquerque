@@ -116,7 +116,8 @@ section{position:relative;scroll-margin-top:0}
 .about-txt .h2{margin-bottom:clamp(24px,3vw,40px)}
 .about-txt p+p{margin-top:1.25em}
 .about-txt p{max-width:52ch;color:#3a3340}
-.facts{margin:clamp(28px,3.4vw,44px) 0 0;display:grid;grid-template-columns:1fr;gap:0}
+.facts-t{margin:clamp(28px,3.4vw,44px) 0 0;font-size:1.125rem;font-weight:500;letter-spacing:-.005em;color:var(--fg-d)}
+.facts{margin:10px 0 0;display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line-d)}
 .facts div{padding-block:14px;border-bottom:1px dashed rgba(138,87,22,.45)}
 .facts dt{font-size:.75rem;letter-spacing:.06em;color:var(--gold-ink);font-weight:500}
 .facts dd{margin:2px 0 0;min-height:1.5em;font-size:.9375rem;color:var(--muted-d)}
@@ -370,8 +371,11 @@ section{position:relative;scroll-margin-top:0}
         <p>Sou o João Albuquerque - movido a rotina intensa, disciplina e pela inquietação de buscar sempre o próximo nível, dentro e fora do consultório.</p>
         <p>Foi essa cabeça que me fez virar o Dr. João (cirurgião-dentista e pós graduando em Implantodontia pela Universidade de Fortaleza), mas sem vestir personagem: penso que presença abre portas e que resultado de verdade exige conversa reta, técnica pesada e zero estética artificial.</p>
         <p>Meu objetivo aqui é simples: resolver do caso cirúrgico ao detalhe estético fino para entregar um sorriso forte, natural e pronto para acompanhar onde você quer chegar.</p>
+        <h3 class="facts-t">Formação</h3>
         <dl class="facts">
-          <div><dt>Formação</dt><dd data-fill="formacao"></dd></div>
+          <div><dt>Graduação</dt><dd>Odontologia pela Universidade de Fortaleza (UNIFOR)</dd></div>
+          <div><dt>Mini-residência</dt><dd>Cirurgias Plásticas Periodontais e Peri-implantares</dd></div>
+          <div><dt>Pós-graduação em andamento</dt><dd>Implantodontia pela Universidade de Fortaleza (UNIFOR)</dd></div>
         </dl>
         <div class="about-cta"><a class="tlink" href="https://api.whatsapp.com/send/?phone=5585996811139" target="_blank" rel="noopener">Conversar com o Dr. João</a></div>
       </div>
@@ -506,7 +510,7 @@ section{position:relative;scroll-margin-top:0}
 <script>
 /* ===== CONTEÚDO EDITÁVEL: preencha aqui e a página se atualiza ===== */
 const WHATSAPP = 'https://api.whatsapp.com/send/?phone=5585996811139';
-const PROFILE = { cro: 'CRO-CE 18497', formacao: 'Pós-graduando em Implantodontia, Universidade de Fortaleza' };                 // ex.: 'CRO-CE 0000'
+const PROFILE = { cro: 'CRO-CE 18497' };                 // ex.: 'CRO-CE 0000'
 const CLINIC  = { endereco: 'Av. Santos Dumont, 2456 - Aldeota, sala nº 1503', horario: 'Das 5:00 às 11:00', mapsQuery: 'Av. Santos Dumont, 2456, Aldeota, Fortaleza - CE', embed: false, foto: '' }; // mapsQuery: endereço completo para o mapa
 const CASES = [                                             // antes/depois: use apenas imagens reais, com autorização
   { titulo: 'Clareamento dental', antes: 'img/pre-clareamento-zoom.jpg', depois: 'img/pos-clareamento.jpg', ratio: '3/4', nota: '' },
@@ -565,7 +569,7 @@ const PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.3" stroke-lin
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* preenchimentos (vazios por padrão) */
-const fills = { cro: PROFILE.cro, formacao: PROFILE.formacao, endereco: CLINIC.endereco, referencia: CLINIC.referencia, horario: CLINIC.horario };
+const fills = { cro: PROFILE.cro, endereco: CLINIC.endereco, referencia: CLINIC.referencia, horario: CLINIC.horario };
 $$('[data-fill]').forEach(el => { el.textContent = fills[el.dataset.fill] || ''; });
 $$('[data-fill-li]').forEach(el => {
   const k = el.dataset.fillLi, v = fills[k];
